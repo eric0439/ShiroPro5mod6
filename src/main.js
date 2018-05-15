@@ -7,6 +7,9 @@ import VuexI18n from 'vuex-i18n'
 import store from './store'
 import translate from './translate'
 
+import 'vue-material/dist/vue-material.css'
+import 'vue-material/dist/theme/default.css'
+
 Vue.config.productionTip = false
 
 Vue.use(Vuex);

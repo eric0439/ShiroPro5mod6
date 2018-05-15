@@ -1,0 +1,19 @@
+{
+    "appTitle": "城娘5改6测评",
+    "lang": "语言",
+    "character": "城娘",
+    "rarity": "稀有度",
+    "cost": "气",
+    "terrain": "城属性",
+    "weapon": "武器",
+    "skillTitle": "特技",
+    "skillDescription": "特技效果",
+    "str": "计略",
+    "rank": {
+            "origin": "改前评级",
+            "mod": "改后评级",
+            "recom": "改筑推荐度"
+    },
+    "searchByName": "使用城娘名字搜索",
+    "close": "关闭"
+}

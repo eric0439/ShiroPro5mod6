@@ -1,10 +1,94 @@
-{
-    "163": {
+[
+    {
+        "id": 7,
+        "name": "仙台城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "hirayama",
+        "skill": {
+            "origin": {
+                "title": "防御強化・弐",
+                "description": "自身の防御が27%上昇"
+            },
+            "mod": {
+                "title": "独眼竜",
+                "description": "自身の耐久が15%、防御が27%上昇"
+            }
+        },
+        "str": {
+            "origin": "仙台七夕まつり[45s]範囲内の城娘の回復を30上昇。攻撃の波（ウェーブ）終了まで有効。",
+            "mod": "仙台七夕まつり[45s]範囲内の城娘の回復を30上昇。攻撃の波（ウェーブ）終了まで有効。"
+        },
+        "rank": {
+            "origin": 1,
+            "mod": 1.5,
+            "recom": 1
+        },
+        "comment": ""
+    },
+    {
+        "id": 104,
+        "name": "福山城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "hirayama",
+        "skill": {
+            "origin": {
+                "title": "攻撃/攻撃速度強化・弐",
+                "description": "自身の攻撃が17%上昇、攻撃速度が17%上昇"
+            },
+            "mod": {
+                "title": "西国の鎮衛",
+                "description": "自身の攻撃が25%上昇、攻撃速度が30%上昇"
+            }
+        },
+        "str": {
+            "origin": "なし",
+            "mod": "なし"
+        },
+        "rank": {
+            "origin": 2,
+            "mod": 2,
+            "recom": 1.5
+        },
+        "comment": ""
+    },
+    {
+        "id": 109,
+        "name": "春日山城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "mountain",
+        "skill": {
+            "origin": {
+                "title": "耐久/防御強化・弐",
+                "description": "自身の耐久と防御が17%上昇"
+            },
+            "mod": {
+                "title": "越後の龍",
+                "description": "自身の攻撃が50上昇、耐久と防御が17%上昇"
+            }
+        },
+        "str": {
+            "origin": "毘沙門堂[40s]気の自然増加量を増加（1体まで。同種の2体目以降は効果が減少）波終了まで有効。",
+            "mod": "毘沙門堂[40s]気の自然増加量を増加（1体まで。同種の2体目以降は効果が減少）波終了まで有効。"
+        },
+        "rank": {
+            "origin": 3,
+            "mod": 3,
+            "recom": 2
+        },
+        "comment": ""
+    },
+    {
         "id": 163,
         "name": "清洲城",
         "rarity": 5,
         "mod": true,
-        "weapon:": "knife",
+        "weapon": "knife",
         "terrain": "plain",
         "skill": {
             "origin": {
@@ -24,6 +108,63 @@
             "origin": 2.5,
             "mod": 2.5,
             "recom": 1.5
-        }
+        },
+        "comment": ""
+    },
+    {
+        "id": 182,
+        "name": "徳島城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "hirayama",
+        "skill": {
+            "origin": {
+                "title": "計略発動時間短縮・弐",
+                "description": "自身の計略使用までの時間が37%短縮"
+            },
+            "mod": {
+                "title": "計略発動時間短縮・弐",
+                "description": "自身の計略使用までの時間が37%短縮"
+            }
+        },
+        "str": {
+            "origin": "阿波おどり[60s]30秒間範囲内の城娘の攻撃が25％上昇 (範囲：大)",
+            "mod": "阿波おどり-連-[60s]30秒間範囲内の城娘の攻撃が35％上昇 (範囲：大)"
+        },
+        "rank": {
+            "origin": 2,
+            "mod": 2.5,
+            "recom": 2
+        },
+        "comment": ""
+    },
+    {
+        "id": 204,
+        "name": "丹波亀山城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "hirayama",
+        "skill": {
+            "origin": {
+                "title": "攻撃範囲強化・弐",
+                "description": "自身の範囲が35上昇"
+            },
+            "mod": {
+                "title": "愛宕百韻",
+                "description": "自身の範囲が35上昇<br/>計略使用までの時間が35%短縮"
+            }
+        },
+        "str": {
+            "origin": "敵は本能寺にあり[60s]範囲内の敵に攻撃の2.5倍のダメージを与える（範囲：大）",
+            "mod": "敵は本能寺にあり[60s]範囲内の敵に攻撃の2.5倍のダメージを与える（範囲：大）"
+        },
+        "rank": {
+            "origin": 1.5,
+            "mod": 1.5,
+            "recom": 1
+        },
+        "comment": ""
     }
-}
+]

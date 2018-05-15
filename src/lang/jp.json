@@ -1,4 +1,6 @@
 {
+    "appTitle": "城娘5改筑6評価",
+    "lang": "言語",
     "character": "城娘",
     "rarity": "レア",
     "cost": "気",
@@ -6,5 +8,12 @@
     "weapon": "武器",
     "skillTitle": "特技",
     "skillDescription": "特技効果",
-    "str": "計略"
+    "str": "計略",
+    "rank": {
+            "origin": "改筑前に評価",
+            "mod": "改筑後評価",
+            "recom": "改筑推奨度"
+    },
+    "searchByName": "名前検索を使用する",
+    "close": "クローズド"
 }
