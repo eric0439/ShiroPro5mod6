@@ -28,6 +28,13 @@
 .md-dialog {
     max-width: 768px;
 }
+.md-card {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.detail {
+    min-height: 300px;
+}
 </style>
 <template>
 
@@ -38,7 +45,7 @@
             <div class="md-toolbar-section-end">
             <md-menu md-direction="bottom-end">
                 <md-button md-menu-trigger>
-                    <md-icon>language</md-icon> {{lang}}
+                    {{lang}}
                 </md-button>
                 <md-menu-content>
                     <md-menu-item @click="lang = 'jp'">日本語</md-menu-item>
@@ -49,39 +56,57 @@
             </div>
         </md-app-toolbar>
         <md-app-content>
-            <md-table v-model="searched" md-sort="id" md-card>
+            <md-card class="detail">
+                <md-card-header>
+                    <md-card-header-text>
+                        <div class="md-title">{{ detailCharacter.name }}<img :src="icon('terrain', detailCharacter.terrain)"><img :src="icon('weapon', detailCharacter.weapon)"></div>
+                        <div class="md-subhead">{{$t('rank.origin')}}<span v-html="rank(detailCharacter.rank.origin)"></span>
+                        {{$t('rank.mod')}}<span v-html="rank(detailCharacter.rank.mod)"></span>
+                        {{$t('rank.recom')}}<span v-html="rank(detailCharacter.rank.recom)"></span></div>
+                    </md-card-header-text>
+
+                    <md-card-media md-medium>
+                        <img v-bind:src="img(detailCharacter.id)">
+                    </md-card-media>
+                </md-card-header>
+                <md-card-content>
+                    <div style="flex: 1;">
+                        <div class="md-subheading">{{$t('skillTitle')}}</div>
+                        <b>{{$t('origin')}}</b>：<br/><b>{{detailCharacter.skill.origin.title}}</b> {{detailCharacter.skill.origin.description}}
+                        <br />
+                        <b>{{$t('mod')}}</b>：<br/><b>{{detailCharacter.skill.mod.title}}</b> {{detailCharacter.skill.mod.description}}
+                        <br/><br/>
+                        <div class="md-subheading">{{$t('str')}}</div>
+                        <b>{{$t('origin')}}</b>：<br/>{{detailCharacter.str.origin}}
+                        <br />
+                        <b>{{$t('mod')}}</b>：<br/>{{detailCharacter.str.mod}}
+                        <br /><br />
+                        <div class="md-subheading">{{$t('comment')}}</div>
+                        {{detailCharacter.comment}}
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-table v-model="searched" md-sort="id" md-card v-on:md-selected="onSelect">
                 <md-table-toolbar>
                     <h1 class="md-title">{{$t('character')}}</h1>
                     <md-field md-clearable class="md-toolbar-section-end">
-                        <md-input v-bind:placeholder="$t('searchByName')" v-model="search" @input="searchOnTable" />
+                        <md-input v-bind:placeholder="$t('searchByName')" v-model="search" v-on:input="searchOnTable" />
                     </md-field>
                 </md-table-toolbar>
                 <md-table-empty-state
                     md-label="No users found"
-                    :md-description="`No user found for this '${search}' query. Try a different search term or create a new user.`">
+                    v-bind:md-description="`No user found for this '${search}' query. Try a different search term or create a new user.`">
                 </md-table-empty-state>
-                <md-table-row slot="md-table-row" slot-scope="{ item }" v-on:click.native="onClickDetail(item)">
+                <md-table-row slot="md-table-row" slot-scope="{ item }" md-selectable="single" v-bind:class="classSelect(item)">
                     <md-table-cell md-label="id" md-numeric md-sort-by="id">{{ item.id }}</md-table-cell>
                     <md-table-cell v-bind:md-label="$t('character')" md-sort-by="name">{{ item.name }}</md-table-cell>
                     <md-table-cell v-bind:md-label="$t('rarity')" md-sort-by="rarity"><span v-html="rarity(item.rarity)"></span></md-table-cell>
                     <md-table-cell v-bind:md-label="$t('terrain')" md-sort-by="terrain"><img :src="icon('terrain', item.terrain)"></md-table-cell>
                     <md-table-cell v-bind:md-label="$t('weapon')" md-sort-by="weapon"><img :src="icon('weapon', item.weapon)"></md-table-cell>
-                    <md-table-cell v-bind:md-label="$t('rank.origin')" md-sort-by="rank.origin"><span v-html="rank(item.rank.origin)"></span></md-table-cell>
-                    <md-table-cell v-bind:md-label="$t('rank.mod')" md-sort-by="rank.mod"><span v-html="rank(item.rank.mod)"></span></md-table-cell>
-                    <md-table-cell v-bind:md-label="$t('rank.recom')" md-sort-by="rank.recom"><span v-html="rank(item.rank.recom)"></span></md-table-cell>
                 </md-table-row>
             </md-table>
         </md-app-content>
     </md-app>
-    <md-dialog v-bind:md-active.sync="flagDialogDetail">
-          <md-dialog-title>{{ detailCharacter.name }}</md-dialog-title>
-          <md-dialog-content>
-
-          </md-dialog-content>
-          <md-dialog-actions>
-            <md-button class="md-primary" v-on:click="flagDialogDetail = false">{{$t('close')}}</md-button>
-          </md-dialog-actions>
-    </md-dialog>
 </div>
 
 </template>
@@ -104,26 +129,54 @@ export default {
     data: function() {
         return {
             characters: characters,
-            detailCharacter: {
+            defaultCharacter: {
                 "id": 0,
-                "name": "",
+                "name": "城娘",
                 "rarity": 0,
                 "mod": true,
-                "weapon": "knife",
-                "terrain": "hirayama",
+                "weapon": "",
+                "terrain": "",
                 "skill": {
                     "origin": {
-                        "title": "",
-                        "description": "%上昇"
+                        "title": "特技",
+                        "description": ""
                     },
                     "mod": {
-                        "title": "",
-                        "description": "%、防御が27%上昇"
+                        "title": "特技改",
+                        "description": ""
                     }
                 },
                 "str": {
-                    "origin": "",
-                    "mod": ""
+                    "origin": "計略",
+                    "mod": "計略改"
+                },
+                "rank": {
+                    "origin": 0,
+                    "mod": 0,
+                    "recom": 0
+                },
+                "comment": ""
+            },
+            detailCharacter: {
+                "id": 0,
+                "name": "城娘",
+                "rarity": 0,
+                "mod": true,
+                "weapon": "",
+                "terrain": "",
+                "skill": {
+                    "origin": {
+                        "title": "特技",
+                        "description": ""
+                    },
+                    "mod": {
+                        "title": "特技改",
+                        "description": ""
+                    }
+                },
+                "str": {
+                    "origin": "計略",
+                    "mod": "計略改"
                 },
                 "rank": {
                     "origin": 0,
@@ -136,7 +189,6 @@ export default {
             search: null,
             searched: [],
             lang: this.$i18n.locale(),
-            flagDialogDetail: false,
         }
     },
     computed: {
@@ -148,11 +200,20 @@ export default {
         }
     },
     created() {
-        this.searched = this.characters
+        this.searched = this.characters;
     },
     methods: {
         icon: function(type, name) {
+            if(type != "" && name != "")
             return require("./assets/img/" + type + "/" + name + ".png");
+            else
+            return "";
+        },
+        img: function(name) {
+            if(name != "")
+            return require("./assets/img/character/" + name + ".jpg");
+            else
+            return "";
         },
         rarity: function(rarity) {
             var i;
@@ -195,10 +256,13 @@ export default {
         searchOnTable () {
             this.searched = searchByName(this.characters, this.search)
         },
-        onClickDetail: function(character) {
+        onSelect: function(character) {
             this.detailCharacter = character;
-            this.flagDialogDetail = true;
-        }
+        },
+        classSelect: ({ weapon }) => ({
+            'md-accent': weapon === "knife" || weapon === "spear" || weapon === "spindle" || weapon === "shield" || weapon === "punch",
+            'md-primary': weapon === "bow" || weapon === "cannon" || weapon === "crossbow" || weapon === "gun" || weapon === "ring" || weapon === "song" || weapon === "spell" || weapon === "staff"
+        }),
     }
 }
 

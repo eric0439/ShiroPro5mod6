@@ -9,6 +9,9 @@
     "skillTitle": "特技",
     "skillDescription": "特技効果",
     "str": "計略",
+    "origin": "改筑前",
+    "mod": "改筑後",
+    "comment": "コメント",
     "rank": {
             "origin": "改筑前に評価",
             "mod": "改筑後評価",

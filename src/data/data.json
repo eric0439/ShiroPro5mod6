@@ -28,6 +28,34 @@
         "comment": ""
     },
     {
+        "id": 96,
+        "name": "丸亀城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "spear",
+        "terrain": "hirayama",
+        "skill": {
+            "origin": {
+                "title": "攻撃/防御強化・弐",
+                "description": "自身の攻撃と防御が17%上昇"
+            },
+            "mod": {
+                "title": "攻撃/防御強化・参",
+                "description": "自身の攻撃と防御が20%上昇"
+            }
+        },
+        "str": {
+            "origin": "丸亀うちわ旋風[55s]範囲内の敵に攻撃の1.2倍のダメージを与え、敵を後退させることができる（範囲：大）",
+            "mod": "丸亀うちわ旋風[55s]範囲内の敵に攻撃の1.2倍のダメージを与え、敵を後退させることができる（範囲：大）"
+        },
+        "rank": {
+            "origin": 2,
+            "mod": 2,
+            "recom": 2
+        },
+        "comment": ""
+    },
+    {
         "id": 104,
         "name": "福山城",
         "rarity": 5,
@@ -80,6 +108,34 @@
             "origin": 3,
             "mod": 3,
             "recom": 2
+        },
+        "comment": ""
+    },
+    {
+        "id": 109,
+        "name": "帰雲城",
+        "rarity": 5,
+        "mod": true,
+        "weapon": "knife",
+        "terrain": "mountain",
+        "skill": {
+            "origin": {
+                "title": "耐久強化・弐",
+                "description": "自身の耐久が27%上昇"
+            },
+            "mod": {
+                "title": "合掌造り",
+                "description": "自身の耐久が27%上昇、計略使用までの時間が35%短縮"
+            }
+        },
+        "str": {
+            "origin": "帰らずの山[35s]範囲内の敵に3倍のダメージを与え移動速度を一定時間低下させる（範囲：小）",
+            "mod": "帰らずの山[35s]範囲内の敵に3倍のダメージを与え移動速度を一定時間低下させる（範囲：小）"
+        },
+        "rank": {
+            "origin": 1.5,
+            "mod": 2,
+            "recom": 1
         },
         "comment": ""
     },
